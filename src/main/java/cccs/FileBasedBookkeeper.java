@@ -161,7 +161,9 @@ public class FileBasedBookkeeper {
                 cumulativeLatency += latency;
             }
             List<DataFile> dataFiles = readMonikers(files, append);
-            dataFiles.stream().map(d -> append.appendFile(d));
+            for (DataFile d : dataFiles) {
+                append.appendFile(d);
+            }
             runningCountAppendFile += dataFiles.size();
             deleteUsedMonikers(files);
             append.commit();
