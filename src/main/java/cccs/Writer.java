@@ -38,14 +38,15 @@ public class Writer {
     private int numDataFilesPerIteration = 1;
     public final Path dataFilesToCommitPath;
 
-    public Writer(int numDataFilesPerIteration, int numRowsPerDataFile) throws Exception{
-        this.numDataFilesPerIteration=numDataFilesPerIteration;
-        this.numRowsPerDataFile =numRowsPerDataFile;
+    public Writer(int numDataFilesPerIteration, int numRowsPerDataFile) throws Exception {
+        this.numDataFilesPerIteration = numDataFilesPerIteration;
+        this.numRowsPerDataFile = numRowsPerDataFile;
         this.dataFilesToCommitPath = new Path(Constants.tableLocation, "dataFilesToCommit");
         this.table = Constants.tables.load(Constants.tableLocation);
     }
+
     public Writer() throws Exception {
-        this(0,0);
+        this.dataFilesToCommitPath = new Path(Constants.tableLocation, "dataFilesToCommit");
     }
 
     public List<Record> createRecords(OffsetDateTime tsTimeperiodLoadedBy) {
